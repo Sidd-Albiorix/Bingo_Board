@@ -1,0 +1,50 @@
+.homeWrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -200px);
+    padding: 0px 16px;
+    width: 560px;
+}
+
+.homeWrapper .headerText {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.boardWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 16px 0px;
+}
+
+.boardWrapper span {
+    width: 100px;
+    height: 35px;
+    padding: 5px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boardWrapper .guessedNoTrue {
+    background-color: blue;
+    color: white;
+}
+
+.boardWrapper .guessedNoFalse {
+    background-color: transparent;
+}
+
+.btnWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.btnWrapper .innerBtnDiv {
+    width: 200px;
+    display: flex;
+    justify-items: center;
+    justify-content: space-between;
+}
