@@ -2,15 +2,18 @@ import React, { useState, useEffect, useRef } from 'react'
 import './Home.css'
 
 function Home() {
+    const timer = 180;
     const [bingoNo, setBingoNo] = useState(0)
     const [ticketBoard, setTicketBoard] = useState({})
-    const [totalTime, setTotalTime] = useState(180);
+    const [totalTime, setTotalTime] = useState(timer);
     let guessNoInterval = useRef(), timeInterval = useRef();
 
+    //Generate new bino board on load
     useEffect(() => {
         refreshBingoBoard();
     }, [])
 
+    //handle when timer completes
     useEffect(() => {
         if (totalTime === 0) {
             clearInterval(timeInterval.current);
@@ -45,7 +48,7 @@ function Home() {
     //handle start btn 
     const onStartBtn = () => {
         if (totalTime === 0)
-            setTotalTime(180);
+            setTotalTime(timer);
         timeInterval.current = setInterval(() => { setTotalTime(prevTime => prevTime - 1) }, 1000)
         generateBingoNos()
     }
@@ -55,7 +58,8 @@ function Home() {
         clearInterval(guessNoInterval.current);
         clearInterval(timeInterval.current);
         setBingoNo(0)
-        setTotalTime(180)
+        setTotalTime(timer)
+        guessNoInterval.current = undefined
         refreshBingoBoard();
     }
 
@@ -91,7 +95,7 @@ function Home() {
 
             <div className='btnWrapper'>
                 <div className='innerBtnDiv'>
-                    <button onClick={onStartBtn}>Start Game</button>
+                    <button onClick={onStartBtn} disabled={guessNoInterval.current}>Start Game</button>
                     <button onClick={onRefreshBtn}>Refresh Board</button>
                 </div>
             </div>
